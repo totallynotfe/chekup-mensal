@@ -1,21 +1,14 @@
+import service
 
 
-def getUserById():
+def get_user_by_id(id_in: int):
+    users: list = service.get_user_by_id(id_in)
     return
 
 
-def getUserByEmail():
+def get_user_by_name(name_in: str):
     return
 
 
-def getExamById():
+def get_all_user():
     return
-
-
-def getAllExams():
-    return
-
-
-def getAllUsers():
-    return
-

@@ -1,21 +1,13 @@
+import model
 
 
-def getUserById():
+def get_user_by_id(id_in: int):
+    return model.read_user(id_in)
+
+
+def get_user_by_name(name_in: str):
     return
 
 
-def getUserByEmail():
+def get_all_user():
     return
-
-
-def getExamById():
-    return
-
-
-def getAllExams():
-    return
-
-
-def getAllUsers():
-    return
-

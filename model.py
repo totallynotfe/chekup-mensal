@@ -3,27 +3,25 @@ import datetime
 import OrmConfig
 
 
-def createUser(name: str, email: str):
-    newUser = OrmConfig.User(name, email)
-    OrmConfig.session.add(newUser)
+def create_user(name: str, address: str, birth: datetime, cpf: str, first: datetime, last: datetime):
+    new_user = OrmConfig.User(name, address, birth, cpf, first, last)
+    OrmConfig.session.add(new_user)
     OrmConfig.session.commit()
 
 
-def updateUser(name: str = '', fullname: str = ''):
-    return
+def update_user(data):
+    user = OrmConfig.session.query(OrmConfig.User).filter(OrmConfig.User.id == data.id)
+    for k, v in data.items():
+        user[k] = v
+    OrmConfig.session.commit()
 
 
-def deleteUser(id: int):
-    return
+def delete_user(id_in: int):
+    user = OrmConfig.session.query(OrmConfig.User).filter(OrmConfig.User.id == id_in)
+    OrmConfig.session.delete(user)
+    OrmConfig.session.commit()
 
 
-def readUser(name: str = '', fullname: str = ''):
-    return
-
-
-def readAllUsers():
-    return
-
-
-def createExam(date: datetime):
-    return
+def read_user(id_in: int):
+    user = OrmConfig.session.query(OrmConfig.User).filter(OrmConfig.User.id == id_in)
+    return user
