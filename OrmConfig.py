@@ -30,7 +30,7 @@ class User(Base):
         self.last = last
 
     def __repr__(self) -> str:
-        return f"User(id={self.id!r}, name={self.name!r}, cpf={self.cpf!r}, address={self.address!r}, birth={self.birth!r}, first={self.first!r}, last={self.last!r})"
+        return f"{self.name!r} - {self.cpf!r}"
 
 
 class Doctor(Base):

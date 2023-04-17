@@ -27,6 +27,11 @@ def read_user(id_in: int):
     return user
 
 
+def get_user_by_name(name_in: str):
+    user = OrmConfig.session.query(OrmConfig.User).filter(OrmConfig.User.name.like(f"%{name_in}%"))
+    return user
+
+
 def get_all_users():
     return OrmConfig.session.query(OrmConfig.User).all()
 

@@ -1,21 +1,35 @@
-import PySimpleGUI as sg
+from tkinter import *
 import controller
 
-sg.theme('BluePurple')
 
-layout = [[sg.Text('Your typed chars appear here:'), sg.Text(size=(15, 1), key='-OUTPUT-')],
-          [sg.Input(key='-IN-')],
-          [sg.Button('Show'), sg.Button('Exit')]]
+def on_search():
+    table.delete(0, END)
+    name = search_entry.get()
+    print("name " + name)
+    users = controller.get_user_by_name(name)
+    table.insert(END, *users)
+    search_entry.delete(0, END)
+    return
 
-window = sg.Window('Pattern 2B', layout)
 
-while True:  # Event Loop
-    event, values = window.read()
-    print(event, values)
-    if event == sg.WIN_CLOSED or event == 'Exit':
-        break
-    if event == 'Show':
-        # Update the "output" text element to be the value of "input" element
-        window['-OUTPUT-'].update(controller.get_user_by_id(values['-IN-']))
+def on_manage():
+    selected = table.get(table.curselection())
+    print(selected)
+    return
 
-window.close()
+
+window = Tk()
+window.geometry("800x420")
+window.title("CRM")
+search_entry = Entry(window, font=("Arial", 16))
+table = Listbox(window, width=60, height=22, bg="#f7ffde")
+search_button = Button(window, text="Search", command=on_search, font=("Arial", 14))
+manage_button = Button(window, text="Manage", command=on_manage, font=("Arial", 14))
+
+
+def initial_screen():
+    search_entry.place(x="5", y="10")
+    table.place(x="5", y="50")
+    search_button.place(x="250", y="5")
+    manage_button.place(x="340", y="5")
+    window.mainloop()
