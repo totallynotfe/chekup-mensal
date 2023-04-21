@@ -102,3 +102,8 @@ def delete_exam(id_in: int):
 def read_exam(id_in: int):
     exam = OrmConfig.session.query(OrmConfig.Exams).filter(OrmConfig.Exams.id == id_in)
     return exam
+
+
+def get_exams_by_user_id(id_in: int):
+    exams = OrmConfig.session.query(OrmConfig.Exams).filter(OrmConfig.Exams.user_id == id_in)
+    return exams

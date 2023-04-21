@@ -13,3 +13,15 @@ def get_user_by_name(name_in: str):
 
 def get_all_user():
     return service.get_all_user()
+
+
+def get_exams_by_user_id(id_in) -> list:
+    return service.get_exams_by_user_id(id_in)
+
+
+def get_all_doctors() -> list:
+    return service.get_all_doctors()
+
+
+def get_all_procedures() -> list:
+    return service.get_all_procedures()

@@ -30,7 +30,7 @@ class User(Base):
         self.last = last
 
     def __repr__(self) -> str:
-        return f"{self.name!r} - {self.cpf!r}"
+        return f"{self.id!r} - {self.name!r} - {self.cpf!r}"
 
 
 class Doctor(Base):
@@ -42,17 +42,15 @@ class Doctor(Base):
     address = Column("address", String(50))
     birth = Column("birth", DateTime)
 
-    def __init__(self, crm: int, name: str, cpf: str, address: str, birth: datetime, first: datetime, last: datetime):
+    def __init__(self, crm: int, name: str, cpf: str, address: str, birth: datetime):
         self.crm = crm
         self.name = name
         self.cpf = cpf
         self.address = address
         self.birth = birth
-        self.first = first
-        self.last = last
 
     def __repr__(self) -> str:
-        return f"Doctor(id={self.id!r}, crm={self.crm!r}, name={self.name!r}, cpf={self.cpf!r}, address={self.address!r}, birth={self.birth!r}, first={self.first!r}, last={self.last!r})"
+        return f"{self.id!r} - {self.name!r}"
 
 
 class Exams(Base):
@@ -74,7 +72,7 @@ class Exams(Base):
         self.doctor_id = doctor_id
 
     def __repr__(self) -> str:
-        return f"Exam(id={self.id!r}, value={self.value!r}, procedure_id={self.procedure_id!r}, sessions={self.sessions!r}, date(s)={self.date!r}, user_id = {self.user_id}, doctor_id={self.doctor_id!r})"
+        return f"{self.id!r} - date(s)={self.date!r} - doctor_id={self.doctor_id!r}"
 
 
 class Procedure(Base):
@@ -84,6 +82,9 @@ class Procedure(Base):
 
     def __init__(self, name):
         self.name = name
+
+    def __repr__(self) -> str:
+        return f"{self.id} - {self.name}"
 
 
 engine = create_engine("mysql+pymysql://root@localhost/controle_dentista", echo=True)
