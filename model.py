@@ -1,6 +1,7 @@
 import datetime
 
 import OrmConfig
+from sqlalchemy import update
 
 
 def create_user(name: str, address: str, birth: datetime, cpf: str, first: datetime, last: datetime):
@@ -18,7 +19,7 @@ def update_user(data):
 
 def delete_user(id_in: int):
     user = OrmConfig.session.query(OrmConfig.User).filter(OrmConfig.User.id == id_in)
-    OrmConfig.session.delete(user)
+    OrmConfig.session.delete(user[0])
     OrmConfig.session.commit()
 
 
@@ -51,7 +52,7 @@ def update_doctor(data):
 
 def delete_doctor(id_in: int):
     doctor = OrmConfig.session.query(OrmConfig.Doctor).filter(OrmConfig.Doctor.id == id_in)
-    OrmConfig.session.delete(doctor)
+    OrmConfig.session.delete(doctor[0])
     OrmConfig.session.commit()
 
 
@@ -71,7 +72,7 @@ def create_procedure(name_in: str):
 
 def delete_procedure(id_in: int):
     procedure = OrmConfig.session.query(OrmConfig.Procedure).filter(OrmConfig.Procedure.id == id_in)
-    OrmConfig.session.delete(procedure)
+    OrmConfig.session.delete(procedure[0])
     OrmConfig.session.commit()
 
 
@@ -87,15 +88,14 @@ def create_exam(value_in: float, procedure_id_in: int, sessions_in: int, date_in
 
 
 def update_exam(data):
-    exam = OrmConfig.session.query(OrmConfig.Exams).filter(OrmConfig.Exams.id == data.id)
-    for k, v in data.items():
-        exam[k] = v
+    smt = (update(OrmConfig.Exams).where(OrmConfig.Exams.id == data['id']).values(data))
+    OrmConfig.session.execute(smt)
     OrmConfig.session.commit()
 
 
 def delete_exam(id_in: int):
     exam = OrmConfig.session.query(OrmConfig.Exams).filter(OrmConfig.Exams.id == id_in)
-    OrmConfig.session.delete(exam)
+    OrmConfig.session.delete(exam[0])
     OrmConfig.session.commit()
 
 

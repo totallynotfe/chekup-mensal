@@ -72,7 +72,7 @@ class Exams(Base):
         self.doctor_id = doctor_id
 
     def __repr__(self) -> str:
-        return f"{self.id!r} - date(s)={self.date!r} - doctor_id={self.doctor_id!r}"
+        return f"{self.id!r} - date={self.date!r}"
 
 
 class Procedure(Base):

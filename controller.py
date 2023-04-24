@@ -25,3 +25,19 @@ def get_all_doctors() -> list:
 
 def get_all_procedures() -> list:
     return service.get_all_procedures()
+
+
+def create_exam(value, date, doctor_id, procedure_id, user_id):
+    service.create_exam(value, date, doctor_id, procedure_id, user_id)
+
+
+def get_exam_by_id(id_in):
+    return service.get_exam_by_id(id_in)[0]
+
+
+def update_exam(data):
+    service.update_exam(data)
+
+
+def delete_exam(id_in):
+    service.delete_exam(id_in)
